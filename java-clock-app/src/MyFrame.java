@@ -7,6 +7,7 @@ public class MyFrame extends JFrame {
     //Instances of these objects will go in the constructor.
     Calendar calendar;
     SimpleDateFormat timeFormat; //use this class to arrange date/time the way we want
+    SimpleDateFormat dateFormat;
     JLabel timeLabel; //Use this to display the time
     JLabel dayLabel;
     //Need string to store the time/day info to display
@@ -31,7 +32,9 @@ public class MyFrame extends JFrame {
         timeLabel.setBackground(Color.black);
         timeLabel.setOpaque(true); //need this for background to show up
 
+        dateFormat = new SimpleDateFormat("EEEE");
         dayLabel = new JLabel();
+        dayLabel.setFont(new Font("Verdana", Font.PLAIN, 40));
 
 
         this.add(timeLabel);
@@ -47,7 +50,7 @@ public class MyFrame extends JFrame {
             time = timeFormat.format(Calendar.getInstance().getTime());
             timeLabel.setText(time);
 
-            day = timeFormat.format(Calendar.DAY_OF_WEEK);
+            day = dateFormat.format(Calendar.DAY_OF_WEEK);
             dayLabel.setText(day);
 
             try{
