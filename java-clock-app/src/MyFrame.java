@@ -5,13 +5,15 @@ import java.util.Calendar;
 
 public class MyFrame extends JFrame {
     //Instances of these objects will go in the constructor.
-    Calendar calendar;
     SimpleDateFormat timeFormat; //use this class to arrange date/time the way we want
     SimpleDateFormat dateFormat;
+    SimpleDateFormat dayFormat;
     JLabel timeLabel; //Use this to display the time
+    JLabel dateLabel;
     JLabel dayLabel;
     //Need string to store the time/day info to display
     String time;
+    String date;
     String day;
 
 
@@ -32,13 +34,18 @@ public class MyFrame extends JFrame {
         timeLabel.setBackground(Color.black);
         timeLabel.setOpaque(true); //need this for background to show up
 
-        dateFormat = new SimpleDateFormat("EEEE");
+        dayFormat = new SimpleDateFormat("EEEE");
         dayLabel = new JLabel();
         dayLabel.setFont(new Font("Verdana", Font.PLAIN, 40));
+
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        dateLabel = new JLabel();
+        dateLabel.setFont(new Font("Verdana", Font.PLAIN, 30));
 
 
         this.add(timeLabel);
         this.add(dayLabel);
+        this.add(dateLabel);
         this.setVisible(true);
 
         //Need a way to make sure the time is updated every second. Otherwise, you only get the static display of when the swing box was first created.
@@ -50,8 +57,11 @@ public class MyFrame extends JFrame {
             time = timeFormat.format(Calendar.getInstance().getTime());
             timeLabel.setText(time);
 
-            day = dateFormat.format(Calendar.DAY_OF_WEEK);
+            day = dayFormat.format(Calendar.getInstance().getTime());
             dayLabel.setText(day);
+
+            date = dateFormat.format(Calendar.getInstance().getTime());
+            dateLabel.setText(date);
 
             try{
                 Thread.sleep(1000); //makes this main thread sleep for 1000ms and update again.
